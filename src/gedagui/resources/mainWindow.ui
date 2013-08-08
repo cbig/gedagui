@@ -20,10 +20,21 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Path</string>
+         <string>Destination path</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="gedagui.qrc">
+          <normaloff>:/icons/icons/kfind.svg</normaloff>:/icons/icons/kfind.svg</iconset>
         </property>
        </widget>
       </item>
@@ -35,9 +46,37 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
+       <widget class="QTreeView" name="file_treeView">
+        <property name="dragEnabled">
+         <bool>true</bool>
+        </property>
+        <property name="dragDropMode">
+         <enum>QAbstractItemView::DragOnly</enum>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectItems</enum>
+        </property>
+        <property name="autoExpandDelay">
+         <number>1</number>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
+        </property>
+        <property name="animated">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -55,14 +94,20 @@
          <item>
           <widget class="QListWidget" name="selected_listWidget">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>300</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -76,51 +121,130 @@
             <enum>Qt::CopyAction</enum>
            </property>
            <property name="selectionMode">
-            <enum>QAbstractItemView::SingleSelection</enum>
+            <enum>QAbstractItemView::MultiSelection</enum>
+           </property>
+           <property name="resizeMode">
+            <enum>QListView::Adjust</enum>
            </property>
           </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="removeSelected_pushButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Delete item</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="gedagui.qrc">
+               <normaloff>:/icons/icons/list-remove.svg</normaloff>:/icons/icons/list-remove.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="getSelected_pushButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Download all</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="gedagui.qrc">
+               <normaloff>:/icons/icons/go-down.svg</normaloff>:/icons/icons/go-down.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QTreeView" name="file_treeView">
-          <property name="dragEnabled">
-           <bool>true</bool>
-          </property>
-          <property name="dragDropMode">
-           <enum>QAbstractItemView::DragOnly</enum>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::MultiSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectItems</enum>
-          </property>
-          <property name="autoExpandDelay">
-           <number>1</number>
-          </property>
-          <property name="sortingEnabled">
-           <bool>true</bool>
-          </property>
-          <property name="animated">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDialogButtonBox" name="buttonBox">
-          <property name="standardButtons">
-           <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QVBoxLayout" name="verticalLayout"/>
       </item>
      </layout>
     </item>
@@ -148,6 +272,8 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen_location"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionS_ave_as"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -177,6 +303,9 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="maximumSize">
     <size>
      <width>16777215</width>
@@ -193,7 +322,12 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen_location"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionS_ave_as"/>
    <addaction name="separator"/>
+   <addaction name="actionGet_selected"/>
+   <addaction name="separator"/>
+   <addaction name="actionPreferences"/>
    <addaction name="actionQuit"/>
   </widget>
   <action name="actionQuit">
@@ -220,7 +354,10 @@
      <normaloff>:/icons/icons/document-open.svg</normaloff>:/icons/icons/document-open.svg</iconset>
    </property>
    <property name="text">
-    <string>Open location</string>
+    <string>&amp;Open location</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionAdd_bookmark">
@@ -235,7 +372,7 @@
   <action name="actionDelete_bookmark">
    <property name="icon">
     <iconset resource="gedagui.qrc">
-     <normaloff>:/icons/icons/list-remove.svg</normaloff>:/icons/icons/list-remove.svg</iconset>
+     <normaloff>:/icons/icons/application-exit.svg</normaloff>:/icons/icons/application-exit.svg</iconset>
    </property>
    <property name="text">
     <string>Delete bookmark</string>
@@ -248,6 +385,54 @@
    </property>
    <property name="text">
     <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="gedagui.qrc">
+     <normaloff>:/icons/icons/document-save.svg</normaloff>:/icons/icons/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionS_ave_as">
+   <property name="icon">
+    <iconset resource="gedagui.qrc">
+     <normaloff>:/icons/icons/document-save-as.svg</normaloff>:/icons/icons/document-save-as.svg</iconset>
+   </property>
+   <property name="text">
+    <string>S&amp;ave as...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionGet_selected">
+   <property name="icon">
+    <iconset resource="gedagui.qrc">
+     <normaloff>:/icons/icons/go-down.svg</normaloff>:/icons/icons/go-down.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Get selected</string>
+   </property>
+   <property name="toolTip">
+    <string>Get selected items</string>
+   </property>
+  </action>
+  <action name="actionSet_destination">
+   <property name="icon">
+    <iconset resource="gedagui.qrc">
+     <normaloff>:/icons/icons/kfind.svg</normaloff>:/icons/icons/kfind.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Destination path</string>
+   </property>
+   <property name="toolTip">
+    <string>Set destination path</string>
    </property>
   </action>
  </widget>
@@ -268,6 +453,22 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>getSelected_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>actionGet_selected</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>675</x>
+     <y>547</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
    </hints>
   </connection>

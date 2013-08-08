@@ -29,7 +29,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.statusbar.showMessage("gedaGUI ready", 4000)
         
+        self.actionGet_selected.setEnabled(False)
+        
         self.file_treeView.doubleClicked.connect(self.update_selected)
+        self.file_treeView.doubleClicked.connect(self.update_controls)
+        
+        # Dict to hold the actual paths to selected zips
+        self.selected = {}
+        
+        # Location where the files are to be downloaded
+        self.download_location = ""
     
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -45,12 +54,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             PYQT_VERSION, platform.system()))
 
     @pyqtSlot()
+    def on_actionGet_selected_triggered(self):
+        if self.download_location == "":
+            QMessageBox.critical(self, "Error!", "No destination path set.")
+
+    @pyqtSlot()
     def on_actionOpen_location_triggered(self):
         # Get the location 
         path = QFileDialog.getExistingDirectory(self, 'Open location', '~')
         self.path_lineEdit.setText(path)
         self.update_dirmodel(path)
         
+    def update_controls(self):
+        
+        if self.selected_listWidget.count > 0:
+            self.actionGet_selected.setEnabled(True)
+        else:
+            self.actionGet_selected.setEnabled(False)
         
     def update_dirmodel(self, path): 
         dirmodel = QFileSystemModel()
@@ -66,8 +86,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fileinfo = self.file_treeView.model().fileInfo(index)
         filename = fileinfo.fileName()
         all_items = self.selected_listWidget.findItems(filename, Qt.MatchRegExp)
-        if not all_items:
+        if not all_items and filename.endsWith('zip'):
             self.selected_listWidget.addItem(fileinfo.fileName())
+            print(fileinfo.filePath())
+            self.selected[filename] = fileinfo.filePath()
 
 #------------------------------------------------------------------------------ 
 # Run the main GUI

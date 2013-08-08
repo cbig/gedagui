@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/system-search.svg</file>
+    <file>icons/document-save-as.svg</file>
+    <file>icons/document-save.svg</file>
+    <file>icons/application-exit.svg</file>
+    <file>icons/go-down.svg</file>
     <file>icons/list-add.svg</file>
     <file>icons/list-remove.svg</file>
     <file>icons/control-center2.svg</file>
