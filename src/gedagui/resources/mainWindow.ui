@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>geadGUI</string>
+   <string>gedaGUI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -49,11 +49,11 @@
          </size>
         </property>
         <property name="title">
-         <string>Bookmarks</string>
+         <string>Selected zips</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QListWidget" name="listWidget">
+          <widget class="QListWidget" name="selected_listWidget">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -66,6 +66,18 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::DropOnly</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::CopyAction</enum>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
           </widget>
          </item>
         </layout>
@@ -75,6 +87,12 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QTreeView" name="file_treeView">
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragOnly</enum>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
@@ -107,7 +125,7 @@
      </layout>
     </item>
    </layout>
-   <zorder>listWidget</zorder>
+   <zorder>selected_listWidget</zorder>
    <zorder>treeWidget</zorder>
    <zorder>buttonBox</zorder>
    <zorder>verticalSpacer</zorder>

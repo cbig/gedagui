@@ -11,7 +11,7 @@ from PyQt4.QtGui import (QAction, QActionGroup, QColor, QFileDialog,
                          QMainWindow, QMenu, QMessageBox, QTextCursor, 
                          QTreeWidgetItem)
 from PyQt4.QtCore import (QDir, QPoint, QSettings, QSize, QStringList, QVariant, 
-                          pyqtSlot)
+                          pyqtSlot, Qt)
 from PyQt4.QtCore import PYQT_VERSION, QT_VERSION
 
 from gedagui.resources.ui_mainWindow import Ui_MainWindow
@@ -29,18 +29,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.statusbar.showMessage("gedaGUI ready", 4000)
         
-        
-    
-    def update_ui(self):
-        if self.toolTreeWidget.currentItem():
-            self.actionLoad_tool.setEnabled(True)
-            selected_tool = str(self.toolTreeWidget.currentItem().text(0))
-            help_text = self.manager.plugins[selected_tool].help
-            self.helpTextEdit.setText(help_text)
-        
-        extent = self.extenactiongroup.checkedAction()
-        if extent: 
-            self.extentLabel.setText("Current extent: %s" % extent.text())
+        self.file_treeView.doubleClicked.connect(self.update_selected)
     
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -63,7 +52,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_dirmodel(path)
         
         
-    def update_dirmodel(self, path):
+    def update_dirmodel(self, path): 
         dirmodel = QFileSystemModel()
         dirmodel.setFilter(QDir.NoDotAndDotDot | QDir.AllEntries)
         filefilter = ["*.zip"] 
@@ -73,8 +62,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file_treeView.model().setRootPath(path)
         self.file_treeView.setRootIndex(self.file_treeView.model().index(path))
         
-        
-        
+    def update_selected(self, index):
+        fileinfo = self.file_treeView.model().fileInfo(index)
+        filename = fileinfo.fileName()
+        all_items = self.selected_listWidget.findItems(filename, Qt.MatchRegExp)
+        if not all_items:
+            self.selected_listWidget.addItem(fileinfo.fileName())
 
 #------------------------------------------------------------------------------ 
 # Run the main GUI
