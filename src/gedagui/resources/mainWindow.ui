@@ -28,7 +28,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton">
+       <widget class="QToolButton" name="setDestination_toolButton">
         <property name="text">
          <string/>
         </property>
@@ -57,7 +57,7 @@
          <bool>true</bool>
         </property>
         <property name="selectionMode">
-         <enum>QAbstractItemView::MultiSelection</enum>
+         <enum>QAbstractItemView::NoSelection</enum>
         </property>
         <property name="selectionBehavior">
          <enum>QAbstractItemView::SelectItems</enum>
@@ -111,14 +111,23 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="tabKeyNavigation">
+            <bool>true</bool>
+           </property>
            <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropOverwriteMode">
             <bool>true</bool>
            </property>
            <property name="dragDropMode">
             <enum>QAbstractItemView::DropOnly</enum>
            </property>
            <property name="defaultDropAction">
-            <enum>Qt::CopyAction</enum>
+            <enum>Qt::TargetMoveAction</enum>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
            </property>
            <property name="selectionMode">
             <enum>QAbstractItemView::MultiSelection</enum>
@@ -249,14 +258,6 @@
      </layout>
     </item>
    </layout>
-   <zorder>selected_listWidget</zorder>
-   <zorder>treeWidget</zorder>
-   <zorder>buttonBox</zorder>
-   <zorder>verticalSpacer</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>path_lineEdit</zorder>
-   <zorder>label</zorder>
-   <zorder>label</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -338,6 +339,9 @@
    <property name="text">
     <string>&amp;Quit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="icon">
@@ -385,6 +389,9 @@
    </property>
    <property name="text">
     <string>Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
    </property>
   </action>
   <action name="actionSave">

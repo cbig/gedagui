@@ -38,7 +38,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.selected = {}
         
         # Location where the files are to be downloaded
-        self.download_location = ""
+        self.destination = ""
     
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -55,22 +55,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionGet_selected_triggered(self):
-        if self.download_location == "":
-            QMessageBox.critical(self, "Error!", "No destination path set.")
+        pass
 
     @pyqtSlot()
     def on_actionOpen_location_triggered(self):
         # Get the location 
         path = QFileDialog.getExistingDirectory(self, 'Open location', '~')
-        self.path_lineEdit.setText(path)
         self.update_dirmodel(path)
+    
+    @pyqtSlot()
+    def on_removeSelected_pushButton_clicked(self):
+        pass
+        
+    @pyqtSlot()
+    def on_setDestination_toolButton_clicked(self):
+        path = QFileDialog.getExistingDirectory(self, 'Set destination', '~')
+        self.path_lineEdit.setText(path)
+        self.destination = path
+        self.update_controls()
         
     def update_controls(self):
-        
-        if self.selected_listWidget.count > 0:
-            self.actionGet_selected.setEnabled(True)
+        if self.selected_listWidget.count() > 0:
+            # FIXME: this should only be enabled if there are selected items
+            self.removeSelected_pushButton.setEnabled(True)
+            if self.destination != "":
+                self.actionGet_selected.setEnabled(True)
+                self.getSelected_pushButton.setEnabled(True)
         else:
+            self.removeSelected_pushButton.setEnabled(False)
             self.actionGet_selected.setEnabled(False)
+            self.getSelected_pushButton.setEnabled(False)
         
     def update_dirmodel(self, path): 
         dirmodel = QFileSystemModel()
