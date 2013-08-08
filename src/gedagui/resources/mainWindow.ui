@@ -47,6 +47,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QTreeView" name="file_treeView">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="dragEnabled">
          <bool>true</bool>
         </property>

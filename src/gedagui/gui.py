@@ -61,7 +61,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def on_actionOpen_location_triggered(self):
         # Get the location 
         path = QFileDialog.getExistingDirectory(self, 'Open location', '~')
-        self.update_dirmodel(path)
+        if path:
+            self.update_dirmodel(path)
     
     @pyqtSlot()
     def on_removeSelected_pushButton_clicked(self):
