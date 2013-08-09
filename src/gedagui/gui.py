@@ -6,7 +6,7 @@ import platform
 import sys
 from types import BooleanType, FloatType, IntType, ListType, StringType
 
-from PyQt4.QtGui import (QAction, QActionGroup, QColor, QFileDialog,
+from PyQt4.QtGui import (QAction, QActionGroup, QColor, QDialog, QFileDialog,
                          QFileSystemModel,
                          QMainWindow, QMenu, QMessageBox, QTextCursor,
                          QTreeWidgetItem)
@@ -35,11 +35,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file_treeView.doubleClicked.connect(self.update_selected)
         self.file_treeView.doubleClicked.connect(self.update_controls)
 
+        # Try to load previous session
+        settings = QSettings()
+        self.saveSettings = settings.value("Settings/saveSettings",
+                                           QVariant(True)).toBool()
+
         # Dict to hold the actual paths to selected zips
         self.selected = {}
-
         # Location where the files are to be downloaded
         self.destination = ""
+
+        # Hold the location for various recent places
+        self.recent_location = ""
+        self.recent_destination = ""
+
+    def closeEvent(self, event):
+        settings = QSettings()
+        if self.saveSettings:
+            db = QVariant(QString(self.dbfile)) \
+                if self.db is not None else QVariant()
+            settings.setValue("Database/LastDb", db)
+            txt = QString(self.tableView.model().name)
+            model = QVariant(txt) \
+                if self.tableView.model() is not None else QVariant()
+            settings.setValue("Database/DefaultModel", model)
+        settings.setValue("Settings/saveSettings",
+                           QVariant(self.saveSettings))
 
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -106,6 +127,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.selected_listWidget.addItem(fileinfo.fileName())
             print(fileinfo.filePath())
             self.selected[filename] = fileinfo.filePath()
+
+
+class ConfigDialog(QDialog, Ui_configDialog):
+
+    def __init__(self, saveload, parent=None):
+        super(ConfigDialog, self).__init__(parent)
+        self.setupUi(self)
+        self.saveloadCheckBox.setChecked(saveload)
+
+    def accept(self):
+        QDialog.accept(self)
+
+    def saveload_previous(self):
+        return self.saveloadCheckBox.isChecked()
 
 #------------------------------------------------------------------------------
 # Run the main GUI
