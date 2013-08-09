@@ -16,23 +16,24 @@ install_requires = [
 
 
 setup(name='gedagui',
-    version=version,
-    description="Simple GUI for managing GEDA files in LAN",
-    long_description=README + '\n\n' + NEWS,
-    classifiers=[
+      version=version,
+      description="Simple GUI for managing GEDA files in LAN",
+      long_description=README + '\n\n' + NEWS,
+      classifiers=[
       # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-    ],
-    keywords='GEDA data GUI',
-    author='Joona Lehtom\xc3\xa4ki',
-    author_email='joona.lehtomaki@gmail.com',
-    url='http://cbig.it.helsinki.fi/people/#joona-lehtomaki',
-    license='MIT',
-    packages=find_packages('src'),
-    package_dir = {'': 'src'},include_package_data=True,
-    zip_safe=False,
-    install_requires=install_requires,
-    entry_points={
-        'console_scripts':
-            ['gedagui=gedagui:main']
-    }
+      ],
+      keywords='GEDA data GUI',
+      author='Joona Lehtom\xc3\xa4ki',
+      author_email='joona.lehtomaki@gmail.com',
+      url='http://cbig.it.helsinki.fi/people/#joona-lehtomaki',
+      license='MIT',
+      packages=find_packages('src'),
+      package_dir={'': 'src'}, include_package_data=True,
+      zip_safe=False,
+      install_requires=install_requires,
+      entry_points=
+      {
+          'console_scripts':
+              ['gedagui=gedagui.gui:main']
+      }
 )
