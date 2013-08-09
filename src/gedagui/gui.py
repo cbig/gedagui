@@ -92,6 +92,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dirmodel.setFilter(QDir.NoDotAndDotDot | QDir.AllEntries)
         filefilter = ["*.zip"]
         dirmodel.setNameFilters(filefilter)
+        dirmodel.sort(0, Qt.AscendingOrder)
         self.file_treeView.setModel(dirmodel)
         self.file_treeView.header().setResizeMode(3)
         self.file_treeView.model().setRootPath(path)

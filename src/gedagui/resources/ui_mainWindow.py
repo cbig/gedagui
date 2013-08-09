@@ -2,7 +2,8 @@
 
 # Form implementation generated from reading ui file './src/gedagui/resources/mainWindow.ui'
 #
-# Created by: PyQt4 UI code generator 4.9.6
+# Created: Fri Aug  9 10:00:23 2013
+#      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,16 +12,7 @@ from PyQt4 import QtCore, QtGui
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+    _fromUtf8 = lambda s: s
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -50,13 +42,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.file_treeView = QtGui.QTreeView(self.centralwidget)
+        self.file_treeView.setEnabled(True)
         self.file_treeView.setDragEnabled(True)
         self.file_treeView.setDragDropMode(QtGui.QAbstractItemView.DragOnly)
         self.file_treeView.setAlternatingRowColors(True)
         self.file_treeView.setSelectionMode(QtGui.QAbstractItemView.NoSelection)
         self.file_treeView.setSelectionBehavior(QtGui.QAbstractItemView.SelectItems)
         self.file_treeView.setAutoExpandDelay(1)
-        self.file_treeView.setSortingEnabled(True)
+        self.file_treeView.setSortingEnabled(False)
         self.file_treeView.setAnimated(False)
         self.file_treeView.setObjectName(_fromUtf8("file_treeView"))
         self.horizontalLayout_2.addWidget(self.file_treeView)
@@ -134,7 +127,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
@@ -227,32 +220,32 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "gedaGUI", None))
-        self.label.setText(_translate("MainWindow", "Destination path", None))
-        self.groupBox.setTitle(_translate("MainWindow", "Selected zips", None))
-        self.removeSelected_pushButton.setToolTip(_translate("MainWindow", "Delete item", None))
-        self.getSelected_pushButton.setToolTip(_translate("MainWindow", "Download all", None))
-        self.menuFile.setTitle(_translate("MainWindow", "File", None))
-        self.menuSettings.setTitle(_translate("MainWindow", "Settings", None))
-        self.menuHelp.setTitle(_translate("MainWindow", "Help", None))
-        self.menuLocations.setTitle(_translate("MainWindow", "Bookmarks", None))
-        self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar", None))
-        self.actionQuit.setText(_translate("MainWindow", "&Quit", None))
-        self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q", None))
-        self.actionAbout.setText(_translate("MainWindow", "&About", None))
-        self.actionOpen_location.setText(_translate("MainWindow", "&Open location", None))
-        self.actionOpen_location.setShortcut(_translate("MainWindow", "Ctrl+O", None))
-        self.actionAdd_bookmark.setText(_translate("MainWindow", "Add bookmark", None))
-        self.actionDelete_bookmark.setText(_translate("MainWindow", "Delete bookmark", None))
-        self.actionPreferences.setText(_translate("MainWindow", "Preferences", None))
-        self.actionPreferences.setShortcut(_translate("MainWindow", "Ctrl+Shift+P", None))
-        self.actionSave.setText(_translate("MainWindow", "&Save", None))
-        self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S", None))
-        self.actionS_ave_as.setText(_translate("MainWindow", "S&ave as...", None))
-        self.actionS_ave_as.setShortcut(_translate("MainWindow", "Ctrl+Shift+S", None))
-        self.actionGet_selected.setText(_translate("MainWindow", "Get selected", None))
-        self.actionGet_selected.setToolTip(_translate("MainWindow", "Get selected items", None))
-        self.actionSet_destination.setText(_translate("MainWindow", "Destination path", None))
-        self.actionSet_destination.setToolTip(_translate("MainWindow", "Set destination path", None))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "gedaGUI", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("MainWindow", "Destination path", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("MainWindow", "Selected zips", None, QtGui.QApplication.UnicodeUTF8))
+        self.removeSelected_pushButton.setToolTip(QtGui.QApplication.translate("MainWindow", "Delete item", None, QtGui.QApplication.UnicodeUTF8))
+        self.getSelected_pushButton.setToolTip(QtGui.QApplication.translate("MainWindow", "Download all", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuLocations.setTitle(QtGui.QApplication.translate("MainWindow", "Bookmarks", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen_location.setText(QtGui.QApplication.translate("MainWindow", "&Open location", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen_location.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAdd_bookmark.setText(QtGui.QApplication.translate("MainWindow", "Add bookmark", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDelete_bookmark.setText(QtGui.QApplication.translate("MainWindow", "Delete bookmark", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionPreferences.setText(QtGui.QApplication.translate("MainWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionS_ave_as.setText(QtGui.QApplication.translate("MainWindow", "S&ave as...", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionS_ave_as.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionGet_selected.setText(QtGui.QApplication.translate("MainWindow", "Get selected", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionGet_selected.setToolTip(QtGui.QApplication.translate("MainWindow", "Get selected items", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSet_destination.setText(QtGui.QApplication.translate("MainWindow", "Destination path", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSet_destination.setToolTip(QtGui.QApplication.translate("MainWindow", "Set destination path", None, QtGui.QApplication.UnicodeUTF8))
 
 import gedagui_rc
