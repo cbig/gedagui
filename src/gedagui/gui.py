@@ -15,6 +15,7 @@ from PyQt4.QtCore import (QDir, QPoint, QSettings, QSize, QStringList, QVariant,
 from PyQt4.QtCore import PYQT_VERSION, QT_VERSION
 
 from gedagui.resources.ui_mainWindow import Ui_MainWindow
+from gedagui.resources.ui_configdialog import Ui_configDialog
 from gedagui.utilities import (APP_RESOURCES, USER_DATA_DIR, VERSION)
 
 #------------------------------------------------------------------------------
@@ -46,21 +47,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.destination = ""
 
         # Hold the location for various recent places
-        self.recent_location = ""
-        self.recent_destination = ""
+        recent_locations = settings.value("Settings/recentLocations").toList()
+        if self.saveSettings and recent_locations:
+            self.recent_locations = recent_locations
+        else:
+            self.recent_locations = []
+
+        # Hold the location for various recent places
+        recent_destinations = settings.value("Settings/recentDestinations").toList()
+        if self.saveSettings and recent_destinations:
+            self.recent_destinations = recent_destinations
+        else:
+            self.recent_destinations = []
 
     def closeEvent(self, event):
         settings = QSettings()
         if self.saveSettings:
-            db = QVariant(QString(self.dbfile)) \
-                if self.db is not None else QVariant()
-            settings.setValue("Database/LastDb", db)
-            txt = QString(self.tableView.model().name)
-            model = QVariant(txt) \
-                if self.tableView.model() is not None else QVariant()
-            settings.setValue("Database/DefaultModel", model)
-        settings.setValue("Settings/saveSettings",
-                           QVariant(self.saveSettings))
+            if self.recent_locations:
+                settings.setValue("Settings/recentLocations",
+                                  QVariant(self.recent_locations))
+            if self.recent_destinations:
+                settings.setValue("Settings/recentDestinations",
+                                  QVariant(self.recent_destinations))
+            settings.setValue("Settings/saveSettings",
+                              QVariant(self.saveSettings))
 
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -84,6 +94,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         path = QFileDialog.getExistingDirectory(self, 'Open location', '~')
         if path:
             self.update_dirmodel(path)
+            self.recent_locations.append(path)
+
+    @pyqtSlot()
+    def on_actionOpen_preferences_triggered(self):
+        dialog = ConfigDialog(self.saveSettings, parent=self)
+        if dialog.exec_():
+            self.saveSettings = dialog.saveload_previous()
 
     @pyqtSlot()
     def on_removeSelected_pushButton_clicked(self):
@@ -94,6 +111,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         path = QFileDialog.getExistingDirectory(self, 'Set destination', '~')
         self.path_lineEdit.setText(path)
         self.destination = path
+        self.recent_destinations.append(path)
         self.update_controls()
 
     def update_controls(self):

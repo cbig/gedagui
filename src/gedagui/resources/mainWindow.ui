@@ -285,7 +285,7 @@
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionPreferences"/>
+    <addaction name="actionOpen_preferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -331,7 +331,7 @@
    <addaction name="separator"/>
    <addaction name="actionGet_selected"/>
    <addaction name="separator"/>
-   <addaction name="actionPreferences"/>
+   <addaction name="actionOpen_preferences"/>
    <addaction name="actionQuit"/>
   </widget>
   <action name="actionQuit">
@@ -385,7 +385,7 @@
     <string>Delete bookmark</string>
    </property>
   </action>
-  <action name="actionPreferences">
+  <action name="actionOpen_preferences">
    <property name="icon">
     <iconset resource="gedagui.qrc">
      <normaloff>:/icons/icons/control-center2.svg</normaloff>:/icons/icons/control-center2.svg</iconset>

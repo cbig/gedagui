@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './src/gedagui/resources/mainWindow.ui'
 #
-# Created: Fri Aug  9 10:00:23 2013
+# Created: Fri Aug  9 10:16:52 2013
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -171,11 +171,11 @@ class Ui_MainWindow(object):
         icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/application-exit.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionDelete_bookmark.setIcon(icon7)
         self.actionDelete_bookmark.setObjectName(_fromUtf8("actionDelete_bookmark"))
-        self.actionPreferences = QtGui.QAction(MainWindow)
+        self.actionOpen_preferences = QtGui.QAction(MainWindow)
         icon8 = QtGui.QIcon()
         icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/control-center2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionPreferences.setIcon(icon8)
-        self.actionPreferences.setObjectName(_fromUtf8("actionPreferences"))
+        self.actionOpen_preferences.setIcon(icon8)
+        self.actionOpen_preferences.setObjectName(_fromUtf8("actionOpen_preferences"))
         self.actionSave = QtGui.QAction(MainWindow)
         icon9 = QtGui.QIcon()
         icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/document-save.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -197,7 +197,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionS_ave_as)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
-        self.menuSettings.addAction(self.actionPreferences)
+        self.menuSettings.addAction(self.actionOpen_preferences)
         self.menuHelp.addAction(self.actionAbout)
         self.menuLocations.addAction(self.actionAdd_bookmark)
         self.menuLocations.addAction(self.actionDelete_bookmark)
@@ -211,7 +211,7 @@ class Ui_MainWindow(object):
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionGet_selected)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionPreferences)
+        self.toolBar.addAction(self.actionOpen_preferences)
         self.toolBar.addAction(self.actionQuit)
 
         self.retranslateUi(MainWindow)
@@ -237,8 +237,8 @@ class Ui_MainWindow(object):
         self.actionOpen_location.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAdd_bookmark.setText(QtGui.QApplication.translate("MainWindow", "Add bookmark", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDelete_bookmark.setText(QtGui.QApplication.translate("MainWindow", "Delete bookmark", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPreferences.setText(QtGui.QApplication.translate("MainWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen_preferences.setText(QtGui.QApplication.translate("MainWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionOpen_preferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
         self.actionS_ave_as.setText(QtGui.QApplication.translate("MainWindow", "S&ave as...", None, QtGui.QApplication.UnicodeUTF8))
